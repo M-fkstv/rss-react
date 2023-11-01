@@ -8,9 +8,9 @@ import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
 
 // import { Data } from '../types/types';
 
-// interface SearchResult {
-//   results: PlanetData[];
-// }
+interface SearchResult {
+  results: PlanetData[];
+}
 
 interface State {
   planetName: string;
@@ -55,15 +55,19 @@ export class App extends Component<AppProps, State> {
   }
 
   handleChahgeSearch(searchValue: string) {
-    this.setState({ ...this.state, value: searchValue });
-    localStorage.setItem('lastSearch', searchValue);
+    this.setState({ ...this.state, planetName: searchValue });
+    localStorage.setItem('search', searchValue);
   }
 
   fetchResults() {
     fetch('https://swapi.dev/api/planets/')
       .then((res) => res.json())
-      .then((data: State) => {
-        this.setState({ ...this.state, results: data.results });
+      .then((data: SearchResult) => {
+        const response = data.results.filter((item) => {
+          return item.name.toLowerCase().trim().includes(this.state.planetName);
+        });
+
+        this.setState({ ...this.state, results: response });
 
         localStorage.setItem('search', JSON.stringify(data.results)); // заменить
       });
