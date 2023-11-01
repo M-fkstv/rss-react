@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "format:fix": "prettier . --write",
+    "format:fix": "prettier --write .",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",
-    "test": "prettier . --write && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "test": "prettier --write . && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "react": "^18.2.0",
