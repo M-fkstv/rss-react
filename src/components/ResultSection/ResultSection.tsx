@@ -16,14 +16,18 @@ export class ResultSection extends Component<Planets> {
     return (
       <div
         style={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          backgroundColor: 'green',
-          height: '80px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 200px)',
+          gap: '16px',
+          justifyContent: 'center',
+          backgroundColor: '#e4e4e4',
           width: '100%',
+          padding: '20px 0',
+          height: '100vh',
         }}
       >
         {this.props.list.map((item, index) => {
+          console.log(item.terrain);
           return (
             <ResultItem
               key={index}
